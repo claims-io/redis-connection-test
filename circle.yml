@@ -1,0 +1,35 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  cache_directories:
+    - Src/packages
+    - "~/docker"
+  pre:
+    - mkdir -p ~/docker;
+  override:
+    - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+    - if [[ -e ~/docker/mono-imagemagick.tar ]]; then docker load -i ~/docker/mono-imagemagick.tar; fi
+    - docker pull claims/mono-imagemagick:latest
+    - docker save claims/mono-imagemagick > ~/docker/mono-imagemagick.tar
+    - docker run -v `pwd`:/app claims/mono-imagemagick /bin/sh -c 'cd /app; sh script/ci'
+
+test:
+  override:
+    - mkdir tmp && cp -R build/* tmp
+    - cp -Rfv Src/Redis.ConnectionTest/bin/Debug/* tmp/redis-connection-test
+    - cd tmp/redis-connection-test && docker build -t redis-connection-test . && cd ../..
+  post:
+    - cp -R tmp/ $CIRCLE_ARTIFACTS/
+
+deployment:
+  master:
+    branch: master
+    owner: claims-io
+    commands:
+      # push api
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker tag redis-connection-test claims/redis-connection-test:latest
+      - docker tag redis-connection-test claims/redis-connection-test:$(date +%Y%m%dT%H%M)-${CIRCLE_SHA1:0:7}
+      - docker push claims/redis-connection-test

@@ -1,0 +1,54 @@
+# use glob syntax
+syntax: glob
+
+# .Net
+.vs/
+*.obj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.scc
+*.vs10x
+*.orig
+*.dbmdl
+*.suo
+*.[Pp]ublish.xml
+*.iml
+*.nupkg
+[Bb]in
+[Db]ebug*/
+obj/
+[Rr]elease*/
+_ReSharper*/
+packages/
+
+.idea/
+
+# mac
+.DS_Store
+
+# config
+Environment.vars
+App.Local.config
+*.vars
+*.userprefs
+
+# Rider
+.idea/
+*.iml
+

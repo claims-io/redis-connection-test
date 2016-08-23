@@ -1,0 +1,25 @@
+#!/bin/sh
+set -e
+
+# Compiles the application.
+
+# ------
+
+cd "$(dirname "$0")/.."
+
+# ------
+
+sh script/clean
+
+# ------
+
+echo "Building ..."
+
+export BUILD_VERSION=${BUILD_VERSION:-1.1.0.0}
+
+# build project
+xbuild /nologo /verbosity:normal config/build.proj /property:BUILD_VERSION=${BUILD_VERSION} /p:DefineConstants="MONO"
+
+echo "Build complete!"
+
+# ------

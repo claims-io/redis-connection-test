@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+# Compiles the application
+
+# ------
+
+cd "$(dirname "$0")/.."
+
+# ------
+
+sh script/clean
+sh script/update
+sh script/build
+
+# ------

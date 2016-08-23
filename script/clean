@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# script/cleans - cleans all generated files / directories
+
+# exit on sub-module failure
+set -e
+
+cd "$(dirname "$0")/.."
+
+# --------
+
+echo "Cleaning ..."
+
+find . -name bin | xargs rm -rf
+find . -name obj | xargs rm -rf
+
+echo "Clean complete!"

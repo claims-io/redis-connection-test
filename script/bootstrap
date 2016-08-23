@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# script/bootstrap - make sure all required dependencies are installed.
+
+# exit on sub-module failure
+set -e
+
+cd "$(dirname "$0")/.."
+
+# --------
+
+echo "Bootstrapping ..."
+
+export EnableNuGetPackageRestore=true
+
+# restore nuget packages
+nuget restore Src/Redis.ConnectionTest.sln
+
+# --------
+
+echo "Bootstrap complete!"

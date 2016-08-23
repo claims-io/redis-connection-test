@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# script/ci-build - compiles the application.
+
+# exit on sub-module failure
+set -e
+
+cd "$(dirname "$0")/.."
+
+# ------
+
+sh script/build
+
+# ------

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# script/test - executes the tests.
+
+# exit on sub-module failure
+set -e
+
+cd "$(dirname "$0")/.."
+
+# --------
+
+sh script/build
+
+# --------
+
+echo "Running unit tests ..."
+date "+%H:%M:%S"
+
+echo "Unit tests complete!"
