@@ -26,8 +26,8 @@ namespace Redis.ConnectionTest
                 Console.WriteLine("--------------------------------------");
                 Console.WriteLine("--------------------------------------");
 
-                //Console.WriteLine("STACK EXCHANGE STARTED");
-                //StackExchangeConnectAndTest(host, port);
+                Console.WriteLine("STACK EXCHANGE STARTED");
+                StackExchangeConnectAndTest(host, port);
 
                 Console.WriteLine("LOOP ENDED");
                 Thread.Sleep(TimeSpan.FromSeconds(5));
