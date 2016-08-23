@@ -18,14 +18,14 @@ namespace Redis.ConnectionTest
 
             while (_keepRunning)
             {
-                StackExchangeConnectAndTest(host, port);
+                ServiceStackConnectAndTest(host, port);
 
                 Thread.Sleep(TimeSpan.FromSeconds(5));
 
                 Console.WriteLine("--------------------------------------");
                 Console.WriteLine("--------------------------------------");
 
-                ServiceStackConnectAndTest(host, port);
+                StackExchangeConnectAndTest(host, port);
 
                 Thread.Sleep(TimeSpan.FromSeconds(5));
             }
